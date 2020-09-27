@@ -16,7 +16,7 @@ namespace luafalcao.api.Web.Mappers
         public void MapArtigo()
         {
             CreateMap<Artigo, ArtigoDto>()
-                .ForMember(artigoDto => artigoDto.DataPublicacao, options => options.MapFrom(artigo => artigo.DataPublicacao.ToShortDateString()));
+                .ForMember(artigoDto => artigoDto.DataPublicacao, options => options.MapFrom(artigo => artigo.DataPublicacao.ToLongDateString()));
         }
     }
 }
