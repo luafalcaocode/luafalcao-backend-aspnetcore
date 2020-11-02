@@ -98,7 +98,8 @@ namespace luafalcao.api.Web.Extensions
         public static void ConfigureJwt(this IServiceCollection services, IConfiguration configuration)
         {
             var jwtSettings = configuration.GetSection("JwtSettings");
-            var secretKey = Environment.GetEnvironmentVariable("SECRET");
+            // var secretKey = Environment.GetEnvironmentVariable("SECRET");
+            var secretKey = jwtSettings.GetSection("Secret").Value;
 
             services.AddAuthentication(option =>
             {

@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "http://localhost/luafalcao.api.Web",
-      "sslPort": 0
+      "applicationUrl": "http://localhost:5001",
+      "sslPort": 5001
     },
     "iisExpress": {
       "applicationUrl": "http://localhost:5001",
@@ -15,18 +15,17 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchUrl": "weatherforecast",
+      "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "luafalcao.api.Web": {
-      "commandName": "IIS",
-      "launchUrl": "weatherforecast",
+      "commandName": "Project",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+      }
     }
   }
 }

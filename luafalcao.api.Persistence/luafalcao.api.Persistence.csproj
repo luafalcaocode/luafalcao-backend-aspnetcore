@@ -23,6 +23,7 @@
   <ItemGroup>
     <Folder Include="Contracts\Strategies\" />
     <Folder Include="Strategies\" />
+    <Folder Include="DataTransferObjects\Comentario\" />
   </ItemGroup>
 
 </Project>

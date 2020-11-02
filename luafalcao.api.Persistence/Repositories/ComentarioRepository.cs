@@ -31,6 +31,15 @@ namespace luafalcao.api.Persistence.Repositories
             return await FindByCondition(x => x.Id.Equals(id))
             .FirstOrDefaultAsync();
         }
+
+        public async Task<IEnumerable<Comentario>> ObterTodosComentariosPorArtigo(int artigoId)
+        {
+            return await FindByCondition(comentario => comentario.ArtigoId.Equals(artigoId))
+                .OrderByDescending(filtro => filtro.DataPublicacao)
+                .ToListAsync();
+                
+        }
+
         public void Cadastrar(Comentario comentario)
         {
             Create(comentario);

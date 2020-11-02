@@ -2,6 +2,8 @@ using AutoMapper;
 using luafalcao.api.Domain.Contracts.Services;
 using luafalcao.api.Facade.Contracts;
 using luafalcao.api.Persistence.DataTransferObjects.Artigo;
+using luafalcao.api.Persistence.DataTransferObjects.Comentario;
+using luafalcao.api.Persistence.Entities;
 using luafalcao.api.Shared.Enums;
 using luafalcao.api.Shared.Utils;
 using System;
@@ -109,5 +111,50 @@ namespace luafalcao.api.Facade
 
             return message;
         }
-    }
+
+        public async Task<Message<IEnumerable<ComentarioDto>>> ObterComentariosPorArtigo(int artigoId)
+        {
+            var message = new Message<IEnumerable<ComentarioDto>>();
+
+            try
+            {
+                var artigo = this.mapper.Map<ArtigoDto>(await this.artigoService.ObterPorId(artigoId));
+                if (artigo == null)
+                {
+                    message.NotFound();
+                }
+
+                var comentarios = this.mapper.Map<IEnumerable<ComentarioDto>>(await this.comentarioService.ObterTodosComentariosPorArtigo(artigoId));
+                if (comentarios == null)
+                {
+                    message.NotFound();
+                }
+
+                message.Ok(comentarios);
+            }
+            catch(Exception exception)
+            {
+                message.Error(exception);
+            }
+
+            return message;
+        }
+
+        public async Task<Message> InserirComentario(ComentarioCadastroDto comentario)
+        {
+            var message = new Message();
+
+            try
+            {
+                await this.comentarioService.Cadastrar(this.mapper.Map<Comentario>(comentario));
+                message.Ok();
+            }
+            catch(Exception exception)
+            {
+                message.Error(exception);
+            }
+
+            return message;
+        }
+     }
 }

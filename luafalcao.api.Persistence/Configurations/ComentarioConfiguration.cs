@@ -16,18 +16,18 @@ namespace luafalcao.api.Persistence.Configurations
             builder.HasData(new Comentario
             {
                 Id = 1,
-                Autor = "Lu„ Falc„o",
+                Autor = "Lu√£ Falc√£o",
                 DataPublicacao = DateTime.Now,
-                Descricao = "Coment·rio.......",
+                Descricao = "Coment√°rio.......",
                 Email = "lpjfalcao@gmail.com",
                 ArtigoId = 1                
             },
             new Comentario
             {
                 Id = 2,
-                Autor = "Lu„ Falc„o",
+                Autor = "Lu√£ Falc√£o",
                 DataPublicacao = DateTime.Now,
-                Descricao = "Coment·rio.......",
+                Descricao = "Coment√°rio.......",
                 Email = "lpjfalcao@gmail.com",
                 ArtigoId = 2
             });

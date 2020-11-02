@@ -4,6 +4,7 @@ using luafalcao.api.Persistence.Entities;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace luafalcao.api.Domain.Services
 {
@@ -23,7 +24,7 @@ namespace luafalcao.api.Domain.Services
         }
 
         public async Task Cadastrar(Comentario comentario)
-        {
+        {            
             this.repositorio.Comentario.Cadastrar(comentario);
             await this.repositorio.SaveAsync();
         }
@@ -38,6 +39,11 @@ namespace luafalcao.api.Domain.Services
             return await this.repositorio.Comentario.ObterTodos();
         }
 
+        public async Task<IEnumerable<Comentario>> ObterTodosComentariosPorArtigo(int artigoId)
+        {
+            return await this.repositorio.Comentario.ObterTodosComentariosPorArtigo(artigoId);
+        }
+
         public async Task<IEnumerable<Comentario>> ObterTodos(int page, int quantity)
         {
             return await this.repositorio.Comentario.ObterTodos(page, quantity);
@@ -47,6 +53,6 @@ namespace luafalcao.api.Domain.Services
         {
             this.repositorio.Comentario.Remover(comentario);
             await this.repositorio.SaveAsync();
-        }
+        }        
     }
 }

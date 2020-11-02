@@ -11,6 +11,7 @@ namespace luafalcao.api.Domain.Contracts.Services
         Task<int> ObterQuantidadeArtigosPorCategoria(BlogEnum blog);
         Task<IEnumerable<Artigo>> ObterTodos(int page, int quantity, BlogEnum blog);
         Task<IEnumerable<Artigo>> ObterUltimasPublicacoes(BlogEnum blog);
+  
         Task<Artigo> ObterPorId(int id);
         Task Cadastrar(Artigo artigo);
         Task Atualizar(Artigo artigo);
