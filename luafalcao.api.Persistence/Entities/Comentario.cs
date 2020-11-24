@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace luafalcao.api.Persistence.Entities
 {
     [Table("Comentario")]
-    public class Comentario
+    public class Comentario : IEntity
     {
         public int Id { get; set; }
         public string Autor { get; set; }

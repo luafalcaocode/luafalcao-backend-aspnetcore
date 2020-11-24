@@ -1,5 +1,6 @@
 using AutoMapper;
 using luafalcao.api.Domain.Contracts.Services;
+using luafalcao.api.Domain.Strategies.Validations;
 using luafalcao.api.Facade.Contracts;
 using luafalcao.api.Persistence.DataTransferObjects.Artigo;
 using luafalcao.api.Persistence.DataTransferObjects.Comentario;
@@ -34,7 +35,7 @@ namespace luafalcao.api.Facade
             {
                 message.Ok(await this.artigoService.ObterQuantidadeArtigosPorCategoria(blog));
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 message.Error(exception);
             }
@@ -69,7 +70,7 @@ namespace luafalcao.api.Facade
         {
             var message = new Message<ArtigoDto>();
 
-            try 
+            try
             {
                 var artigo = this.mapper.Map<ArtigoDto>(await this.artigoService.ObterPorId(id));
                 if (artigo == null)
@@ -79,7 +80,7 @@ namespace luafalcao.api.Facade
 
                 message.Ok(artigo);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 message.Error(exception);
             }
@@ -104,7 +105,7 @@ namespace luafalcao.api.Facade
                 message.Ok(ultimasPublicacoes);
 
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 message.Error(exception);
             }
@@ -132,7 +133,7 @@ namespace luafalcao.api.Facade
 
                 message.Ok(comentarios);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 message.Error(exception);
             }
@@ -146,15 +147,25 @@ namespace luafalcao.api.Facade
 
             try
             {
+                var validations = NullOrEmptyValidationStrategy<Comentario>.GetSingleton().Validate(this.mapper.Map<Comentario>(comentario));
+
+                if (validations.Count > 0)
+                {
+                    message.BadRequest(validations);
+
+                    return message;
+                }
+
                 await this.comentarioService.Cadastrar(this.mapper.Map<Comentario>(comentario));
+
                 message.Ok();
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 message.Error(exception);
             }
 
             return message;
         }
-     }
+    }
 }

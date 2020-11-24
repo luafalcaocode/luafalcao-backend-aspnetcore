@@ -5,7 +5,7 @@ namespace luafalcao.api.Persistence.DataTransferObjects.Comentario
     {
         public string Autor { get; set; }
         public string Descricao { get; set; }
-        public DateTime DataPublicacao { get; set; }
+        public string DataPublicacao { get; set; }
 
         public ComentarioDto()
         {

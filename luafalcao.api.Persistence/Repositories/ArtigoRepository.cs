@@ -49,6 +49,7 @@ namespace luafalcao.api.Persistence.Repositories
         public async Task<Artigo> ObterPorId(int id)
         {
             return await FindByCondition(x => x.Id.Equals(id))
+                .OrderByDescending(x => x.DataPublicacao)
                 .FirstOrDefaultAsync();
         }
         public void Cadastrar(Artigo artigo)

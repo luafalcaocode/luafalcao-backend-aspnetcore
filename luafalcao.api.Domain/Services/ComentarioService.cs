@@ -1,10 +1,15 @@
 using luafalcao.api.Domain.Contracts.Services;
+using luafalcao.api.Domain.Strategies.Validations;
 using luafalcao.api.Persistence.Contracts.Repositories;
 using luafalcao.api.Persistence.Entities;
 
+
+using System.Globalization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Threading;
 using System;
+using luafalcao.api.Shared.Utils;
 
 namespace luafalcao.api.Domain.Services
 {
@@ -14,6 +19,9 @@ namespace luafalcao.api.Domain.Services
 
         public ComentarioService(IRepositoryManager repositorio)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
+
             this.repositorio = repositorio;
         }
 
@@ -24,7 +32,9 @@ namespace luafalcao.api.Domain.Services
         }
 
         public async Task Cadastrar(Comentario comentario)
-        {            
+        {                 
+            comentario.DataPublicacao = DateTime.Now;
+
             this.repositorio.Comentario.Cadastrar(comentario);
             await this.repositorio.SaveAsync();
         }

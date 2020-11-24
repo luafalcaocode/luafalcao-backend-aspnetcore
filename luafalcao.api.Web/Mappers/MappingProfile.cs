@@ -1,8 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using luafalcao.api.Persistence.DataTransferObjects.Artigo;
 using luafalcao.api.Persistence.DataTransferObjects.Comentario;
 using luafalcao.api.Persistence.Entities;
 using luafalcao.api.Shared.Utils;
+using System.Threading;
+using System.Globalization;
 
 namespace luafalcao.api.Web.Mappers
 {
@@ -10,6 +13,10 @@ namespace luafalcao.api.Web.Mappers
     {
         public MappingProfile()
         {
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
+
             MapArtigo();
             MapComentario();
             CreateMap(typeof(Message<>), typeof(Message<>));
@@ -22,11 +29,12 @@ namespace luafalcao.api.Web.Mappers
         }
 
         public void MapComentario()
-        {
+        {      
             CreateMap<Comentario, ComentarioDto>()
                    .ForMember(comentarioDto => comentarioDto.DataPublicacao, options => options.MapFrom(comentario => comentario.DataPublicacao.ToLongDateString()));
 
-            CreateMap<ComentarioCadastroDto, Comentario>();             
+            CreateMap<ComentarioCadastroDto, Comentario>();
+                        
         }
     }
 }

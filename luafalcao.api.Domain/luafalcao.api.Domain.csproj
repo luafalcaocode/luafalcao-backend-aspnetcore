@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
+    <Folder Include="Strategies\" />
+    <Folder Include="Strategies\Validations\" />
   </ItemGroup>
 
 </Project>
