@@ -1,6 +1,6 @@
 using AutoMapper;
 using luafalcao.api.Domain.Contracts.Services;
-using luafalcao.api.Domain.Strategies.Validations;
+using luafalcao.api.Domain.Singletons.Validations;
 using luafalcao.api.Facade.Contracts;
 using luafalcao.api.Persistence.DataTransferObjects.Artigo;
 using luafalcao.api.Persistence.DataTransferObjects.Comentario;
@@ -147,11 +147,13 @@ namespace luafalcao.api.Facade
 
             try
             {
-                var validations = NullOrEmptyValidationStrategy<Comentario>.GetSingleton().Validate(this.mapper.Map<Comentario>(comentario));
+                comentario.DataPublicacao = DateTime.Now.ToLongDateString();
 
-                if (validations.Count > 0)
+                var validations = Validate(comentario);
+
+                if (validations.Any())
                 {
-                    message.BadRequest(validations);
+                    message.BadRequest(validations.ToList());
 
                     return message;
                 }
@@ -166,6 +168,15 @@ namespace luafalcao.api.Facade
             }
 
             return message;
+        }
+
+        public IEnumerable<string> Validate(ComentarioCadastroDto comentario)
+        {
+            var validationsNullOrEmpty = NullOrEmptyValidationSingleton.GetSingleton().Validate(comentario);
+            var validationEmail = EmailValidationSingleton.GetSingleton().Validate(comentario);
+            var validationMaxLength = MaxLengthValidationSingleton.GetSingleton().Validate(comentario);
+
+            return validationsNullOrEmpty.Concat(validationEmail).Concat(validationMaxLength);
         }
     }
 }

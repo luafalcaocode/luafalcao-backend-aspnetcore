@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using System.Reflection;
 using luafalcao.api.Persistence.Entities;
 
-namespace luafalcao.api.Domain.Strategies.Validations
+namespace luafalcao.api.Domain.Singletons.Validations
 {
-    public class NullOrEmptyValidationStrategy<T> : IValidationStrategy<T>
+    public class NullOrEmptyValidationSingleton : ISingleton
     {
-        private static NullOrEmptyValidationStrategy<T> _instance = new NullOrEmptyValidationStrategy<T>();
+        private static NullOrEmptyValidationSingleton _instance = new NullOrEmptyValidationSingleton();
 
-        private NullOrEmptyValidationStrategy()
+        private NullOrEmptyValidationSingleton()
         {
         }
 
-        public static IValidationStrategy<T> GetSingleton()
+        public static NullOrEmptyValidationSingleton GetSingleton()
         {
             if (_instance == null)
             {
-                return new NullOrEmptyValidationStrategy<T>();
+                return new NullOrEmptyValidationSingleton();
             }
 
             return _instance;
         }
 
-        public IList<string> Validate(T model)
+        public IList<string> Validate<T>(T model)
         {
             IList<string> messages = new List<string>();      
 

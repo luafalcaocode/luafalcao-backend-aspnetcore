@@ -16,8 +16,8 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="Strategies\" />
-    <Folder Include="Strategies\Validations\" />
+    <Folder Include="Singletons\" />
+    <Folder Include="Singletons\Validations\" />
   </ItemGroup>
 
 </Project>

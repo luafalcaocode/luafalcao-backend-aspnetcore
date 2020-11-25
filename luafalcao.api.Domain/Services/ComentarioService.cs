@@ -1,5 +1,5 @@
 using luafalcao.api.Domain.Contracts.Services;
-using luafalcao.api.Domain.Strategies.Validations;
+using luafalcao.api.Domain.Singletons.Validations;
 using luafalcao.api.Persistence.Contracts.Repositories;
 using luafalcao.api.Persistence.Entities;
 
@@ -32,9 +32,7 @@ namespace luafalcao.api.Domain.Services
         }
 
         public async Task Cadastrar(Comentario comentario)
-        {                 
-            comentario.DataPublicacao = DateTime.Now;
-
+        {                
             this.repositorio.Comentario.Cadastrar(comentario);
             await this.repositorio.SaveAsync();
         }
