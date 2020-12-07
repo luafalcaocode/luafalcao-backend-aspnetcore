@@ -58,7 +58,7 @@ namespace luafalcao.api.Persistence.Repositories
         }
         public void Atualizar(Artigo artigo)
         {
-            Atualizar(artigo);
+            Update(artigo);
         }
         public void Remover(Artigo artigo)
         {

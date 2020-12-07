@@ -1,4 +1,5 @@
 using luafalcao.api.Facade.Contracts;
+using luafalcao.api.Persistence.DataTransferObjects.Artigo;
 using luafalcao.api.Shared.Enums;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Policy;
@@ -44,6 +45,14 @@ namespace luafalcao.api.Web.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var message = await this.facade.ObterArtigoPorId(id);
+            return StatusCode(message.StatusCode, message);
+        }
+
+        [HttpPut]
+        [Route("{id}/like")]
+        public async Task<IActionResult> Like(ArtigoDto artigo)
+        {
+            var message = await this.facade.AddLike(artigo);
             return StatusCode(message.StatusCode, message);
         }
     }

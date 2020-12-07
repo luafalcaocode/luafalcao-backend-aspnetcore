@@ -170,6 +170,24 @@ namespace luafalcao.api.Facade
             return message;
         }
 
+        public async Task<Message> AddLike(ArtigoDto artigo)
+        {
+            var message = new Message();
+
+            try
+            {
+                artigo.NumeroLikes++;
+                await this.artigoService.Atualizar(this.mapper.Map<Artigo>(artigo));
+                message.Ok();
+            }
+            catch(Exception exception)
+            {
+                message.Error(exception);
+            }
+
+            return message;
+        }
+
         public IEnumerable<string> Validate(ComentarioCadastroDto comentario)
         {
             var validationsNullOrEmpty = NullOrEmptyValidationSingleton.GetSingleton().Validate(comentario);
