@@ -80,6 +80,8 @@ namespace luafalcao.api.Domain.Services
             {
                 case BlogEnum.DiarioEngenheiroSoftware:
                     return "diario-de-um-engenheiro-de-software";
+                case BlogEnum.NextGameplay:
+                    return "next-gameplay";                       
             }
 
             return null;

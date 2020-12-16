@@ -29,7 +29,7 @@ namespace luafalcao.api.Shared.Utils
         {
             Success = true;
             StatusCode = (int)StatusCodeEnum.Ok;
-            Description = "Operação realizada com sucesso.";
+            Description = "OperaÃ§Ã£o realizada com sucesso.";
         }
 
         public void Created()
@@ -59,14 +59,14 @@ namespace luafalcao.api.Shared.Utils
         {
             Success = false;
             StatusCode = (int)StatusCodeEnum.NotFound;
-            Description = "O conteúdo solicitado não está cadastrado no banco de dados.";
+            Description = "O conteÃºdo solicitado nÃ£o estÃ¡ cadastrado no banco de dados.";
         }
 
         public void NoContent()
         {
             Success = true;
             StatusCode = (int)StatusCodeEnum.NoContent;
-            Description = "Operação realizada com sucesso.";
+            Description = "OperaÃ§Ã£o realizada com sucesso.";
         }
 
         public void Unauthorized()
@@ -95,7 +95,7 @@ namespace luafalcao.api.Shared.Utils
         {
             Success = true;
             StatusCode = (int)StatusCodeEnum.Ok;
-            Description = "Operação realizada com sucesso.";
+            Description = "Operaï¿½ï¿½o realizada com sucesso.";
         }
 
         public void Error(Exception error)
@@ -117,14 +117,14 @@ namespace luafalcao.api.Shared.Utils
         {
             Success = false;
             StatusCode = (int)StatusCodeEnum.NotFound;
-            Description = "O conteúdo solicitado não está cadastrado no banco de dados.";
+            Description = "O conteÃºdo solicitado nÃ£o estÃ¡ cadastrado no banco de dados.";
         }
 
         public void NoContent()
         {
             Success = true;
             StatusCode = (int)StatusCodeEnum.NoContent;
-            Description = "Operação realizada com sucesso.";
+            Description = "OperaÃ§Ã£o realizada com sucesso.";
         }
 
         public void BadRequest(IList<string> validations = null)

@@ -16,5 +16,6 @@ namespace luafalcao.api.Facade.Contracts
         Task<Message<IEnumerable<ComentarioDto>>> ObterComentariosPorArtigo(int artigoId);
         Task<Message> InserirComentario(ComentarioCadastroDto comentario);
         Task<Message> AddLike(ArtigoDto artigo);
+        Task<Message> InserirArtigo(ArtigoCadastroDto artigo);
     }
 }

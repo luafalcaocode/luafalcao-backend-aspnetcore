@@ -2,6 +2,7 @@ namespace luafalcao.api.Shared.Enums
 {
     public enum BlogEnum
     {
-        DiarioEngenheiroSoftware
+        DiarioEngenheiroSoftware = 1,
+        NextGameplay = 2
     }
 }

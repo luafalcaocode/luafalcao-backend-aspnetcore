@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using luafalcao.api.Shared.Enums;
+using System;
 
 namespace luafalcao.api.Persistence.Repositories
 {
@@ -27,7 +28,7 @@ namespace luafalcao.api.Persistence.Repositories
         public async Task<IEnumerable<Artigo>> ObterTodos(int page, int quantity, BlogEnum blog)
         {
             return await FindAll()
-                .Where(filtro => filtro.AQualBlogPertence.Equals(blog.ToString()))
+                .Where(filtro => filtro.AQualBlogPertence.Equals(Convert.ToString((int) blog)))
                 .OrderByDescending(filtro => filtro.DataPublicacao)
                 .Skip((page - 1 ) * quantity)
                 .Take(quantity)

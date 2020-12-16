@@ -53,6 +53,8 @@ namespace luafalcao.api.Facade
                 if (!artigos.Any())
                 {
                     message.NotFound();
+
+                    return message;
                 }
 
                 message.Ok(artigos);
@@ -178,6 +180,26 @@ namespace luafalcao.api.Facade
             {
                 artigo.NumeroLikes++;
                 await this.artigoService.Atualizar(this.mapper.Map<Artigo>(artigo));
+                message.Ok();
+            }
+            catch(Exception exception)
+            {
+                message.Error(exception);
+            }
+
+            return message;
+        }
+
+        public async Task<Message> InserirArtigo(ArtigoCadastroDto artigo)
+        {
+            var message = new Message();
+
+            try
+            {
+                artigo.DataPublicacao = DateTime.Now.ToShortDateString();
+                artigo.Thumbnail = "thumbnail.jpg";
+
+                await this.artigoService.Cadastrar(this.mapper.Map<Artigo>(artigo));
                 message.Ok();
             }
             catch(Exception exception)

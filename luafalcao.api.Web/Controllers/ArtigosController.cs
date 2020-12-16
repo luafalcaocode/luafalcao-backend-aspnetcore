@@ -27,9 +27,9 @@ namespace luafalcao.api.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(BlogEnum blog, int pagina, int quantidade)
+        public async Task<IActionResult> Get(int blog, int pagina, int quantidade)
         {
-            var message = await this.facade.ObterArtigosPaginados(pagina, quantidade, blog);
+            var message = await this.facade.ObterArtigosPaginados(pagina, quantidade, (BlogEnum)blog);
             return StatusCode(message.StatusCode, message);
         }
 
@@ -53,6 +53,13 @@ namespace luafalcao.api.Web.Controllers
         public async Task<IActionResult> Like(ArtigoDto artigo)
         {
             var message = await this.facade.AddLike(artigo);
+            return StatusCode(message.StatusCode, message);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(ArtigoCadastroDto artigo)
+        {
+            var message = await this.facade.InserirArtigo(artigo);
             return StatusCode(message.StatusCode, message);
         }
     }
